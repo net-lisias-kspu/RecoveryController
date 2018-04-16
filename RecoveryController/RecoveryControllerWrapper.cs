@@ -26,12 +26,13 @@ using UnityEngine;
 //      You can unregister you rmod if you like
 //      Call the ControllingMod with the vessel to find out which mod is registered to have control of it.
 
+#if false
 #if RECOVERY_CONTROLLER == false
 
 // TODO: Change to your plugin's namespace here.
 namespace RecoveryController
 {
-    xzcvzc
+    
     /**********************************************************\
     *          --- DO NOT EDIT BELOW THIS COMMENT ---          *
     *                                                          *
@@ -146,4 +147,5 @@ namespace RecoveryController
         }
     }
 }
+#endif
 #endif

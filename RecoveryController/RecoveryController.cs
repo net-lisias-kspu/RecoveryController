@@ -273,35 +273,39 @@ namespace RecoveryController
     /// <summary>
     /// Class to take care of things in the editor
     /// </summary>
-    [KSPAddon(KSPAddon.Startup.SpaceCentre, false)]
+    [KSPAddon(KSPAddon.Startup.Instantly, true)]
     public class RecoveryController : MonoBehaviour
     {
         const string AUTO = "auto";
 
-        public static List<string> registeredMods = new List<string>();
+        public static List<string> registeredMods;
 
         private void Awake()
         {
-            if (registeredMods.Contains("StageRecovery"))
-            {
-                GameEvents.onEditorPartPlaced.Add(onEditorPartPlaced);
-                GameEvents.onEditorLoad.Add(onEditorLoad);
-                GameEvents.onVesselLoaded.Add(onVesselLoaded);
-                GameEvents.onVesselCreate.Add(onVesselCreate);
-                GameEvents.onVesselWasModified.Add(onVesselWasModified);
-
-                DontDestroyOnLoad(this);
-                RegisterMod(AUTO);
-                RegisterMod("none");
-                DontDestroyOnLoad(this);
-            }
+            registeredMods = new List<string>();
+            Log.Info("RecoveryController.Awake");
+            DontDestroyOnLoad(this);
         }
 
         public bool RegisterMod(string modName)
         {
             Log.Info("RegisterMod, modname: " + modName);
             if (!registeredMods.Contains(modName))
+            {
                 registeredMods.Add(modName);
+                if (modName == "StageRecovery")
+                {
+                    GameEvents.onEditorPartPlaced.Add(onEditorPartPlaced);
+                    GameEvents.onEditorLoad.Add(onEditorLoad);
+                    GameEvents.onVesselLoaded.Add(onVesselLoaded);
+                    GameEvents.onVesselCreate.Add(onVesselCreate);
+                    GameEvents.onVesselWasModified.Add(onVesselWasModified);
+
+                    RegisterMod(AUTO);
+                    RegisterMod("none");
+                    
+                }
+            }
             return true;
         }
 
@@ -311,6 +315,14 @@ namespace RecoveryController
             try
             {
                 registeredMods.Remove(modName);
+                if (modName == "StageRecovery")
+                {
+                    GameEvents.onEditorPartPlaced.Remove(onEditorPartPlaced);
+                    GameEvents.onEditorLoad.Remove(onEditorLoad);
+                    GameEvents.onVesselLoaded.Remove(onVesselLoaded);
+                    GameEvents.onVesselCreate.Remove(onVesselCreate);
+                    GameEvents.onVesselWasModified.Remove(onVesselWasModified);
+                }
                 return true;
             }
             catch { return false ; }

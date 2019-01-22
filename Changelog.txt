@@ -3,3 +3,6 @@
 
 0.0.3.3
 	Version bump for 1.5 rebuild
+
+0.0.3.5
+	Fixed startup sequence for 1.5 and later

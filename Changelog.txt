@@ -6,3 +6,9 @@
 
 0.0.3.5
 	Fixed startup sequence for 1.5 and later
+
+0.0.3.6
+	Unreleased debug version
+
+0.0.3.7
+	Changed startup option to instantly

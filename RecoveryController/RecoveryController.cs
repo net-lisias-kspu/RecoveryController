@@ -292,6 +292,7 @@ namespace RecoveryController
             Log.Info("RegisterMod, modname: " + modName);
             if (!registeredMods.Contains(modName))
             {
+                Log.Info("Adding to list: " + modName);
                 registeredMods.Add(modName);
                 if (modName == "StageRecovery")
                 {
@@ -300,11 +301,11 @@ namespace RecoveryController
                     GameEvents.onVesselLoaded.Add(onVesselLoaded);
                     GameEvents.onVesselCreate.Add(onVesselCreate);
                     GameEvents.onVesselWasModified.Add(onVesselWasModified);
-
-                    RegisterMod(AUTO);
-                    RegisterMod("none");
-                    
                 }
+                if (!registeredMods.Contains(AUTO))
+                    registeredMods.Add(AUTO);
+                if (!registeredMods.Contains("none"))
+                    registeredMods.Add("none");
             }
             return true;
         }

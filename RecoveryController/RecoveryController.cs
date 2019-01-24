@@ -273,7 +273,7 @@ namespace RecoveryController
     /// <summary>
     /// Class to take care of things in the editor
     /// </summary>
-    [KSPAddon(KSPAddon.Startup.Instantly, true)]
+    [KSPAddon(KSPAddon.Startup.MainMenu, true)]
     public class RecoveryController : MonoBehaviour
     {
         const string AUTO = "auto";
@@ -289,10 +289,9 @@ namespace RecoveryController
 
         public bool RegisterMod(string modName)
         {
-            Log.Info("RegisterMod, modname: " + modName);
+            Log.Error("RecoveryController.RegisterMod, modname: " + modName);
             if (!registeredMods.Contains(modName))
             {
-                Log.Info("Adding to list: " + modName);
                 registeredMods.Add(modName);
                 if (modName == "StageRecovery")
                 {
@@ -306,6 +305,10 @@ namespace RecoveryController
                     registeredMods.Add(AUTO);
                 if (!registeredMods.Contains("none"))
                     registeredMods.Add("none");
+            }
+            foreach (var r in registeredMods)
+            {
+                Log.Info("Registered mod: " + r);
             }
             return true;
         }

@@ -12,3 +12,9 @@
 
 0.0.3.7
 	Changed startup option to instantly
+
+0.0.3.8
+	Added InstallChecker
+	Updated AssemblyVersion.tt
+	Thanks to github user @Maartenvm:
+		Added support for Universal Storage Decouplers

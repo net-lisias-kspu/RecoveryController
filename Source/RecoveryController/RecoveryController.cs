@@ -101,7 +101,7 @@ namespace RecoveryController
                 {
                     ControllingRecoveryModule crm = child.FindModuleImplementing<ControllingRecoveryModule>();
                     if (crm == null)
-                        Log.Info("Missing module ControllingRecoveryModule");
+                        Log.info("Missing module ControllingRecoveryModule");
                     crm.RecoveryOwner = RecoveryOwner;
                     UpdateChildren(child);
                 }
@@ -113,9 +113,9 @@ namespace RecoveryController
         {
 #if DEBUG
             if (HighLogic.LoadedSceneIsEditor)
-                Log.Info("RecoveryIDModule: Start, parentPart: " + this.part.partInfo.name);
+                Log.info("RecoveryIDModule: Start, parentPart: {0}", this.part.partInfo.name);
             if (HighLogic.LoadedSceneIsFlight)
-                Log.Info("RecoveryIDModule: Start, parentPart: " + this.part.partInfo.name + "   parentVessel: " + this.part.vessel.name);
+                Log.info("RecoveryIDModule: Start, parentPart: {0}   parentVessel: {1}", this.part.partInfo.name, this.part.vessel.name);
 #endif
 
             if (RecoveryController.registeredMods != null && RecoveryController.registeredMods.Count > 0)
@@ -175,7 +175,7 @@ namespace RecoveryController
             //bool b = HasModule<ModuleDecouple>(part);
             if (part.modules.Count > 0)
             {
-                Log.Info("IsDecoupler, modules.Count: " + part.modules.Count.ToString());
+                Log.info("IsDecoupler, modules.Count: {0}", part.modules.Count);
                 ProtoPartModuleSnapshot md = part.modules.FirstOrDefault(mod => mod.moduleName == "ModuleDecouple");
                 ProtoPartModuleSnapshot mad = part.modules.FirstOrDefault(mod => mod.moduleName == "ModuleAnchoredDecoupler");
 
@@ -205,7 +205,7 @@ namespace RecoveryController
                 {
                     ControllingRecoveryModule crm = child.FindModuleImplementing<ControllingRecoveryModule>();
                     if (crm == null)
-                        Log.Info("Missing module ControllingRecoveryModule");
+                        Log.info("Missing module ControllingRecoveryModule");
                     crm.RecoveryOwner = recoveryOwner;
                     UpdateChildren(child, recoveryOwner, entireVessel);
                 }
@@ -283,13 +283,13 @@ namespace RecoveryController
         private void Awake()
         {
             registeredMods = new List<string>();
-            Log.Info("RecoveryController.Awake");
+            Log.info("RecoveryController.Awake");
             DontDestroyOnLoad(this);
         }
 
         public bool RegisterMod(string modName)
         {
-            Log.Error("RecoveryController.RegisterMod, modname: " + modName);
+            Log.error("RecoveryController.RegisterMod, modname: {0}", modName);
             if (!registeredMods.Contains(modName))
             {
                 registeredMods.Add(modName);
@@ -308,7 +308,7 @@ namespace RecoveryController
             }
             foreach (string r in registeredMods)
             {
-                Log.Info("Registered mod: " + r);
+                Log.info("Registered mod: {0}", r);
             }
             return true;
         }
@@ -336,17 +336,17 @@ namespace RecoveryController
         {
             if (v.name.StartsWith("Ast."))
             {
-                Log.Info("Vessel: Asteroid");
+                Log.info("Vessel: Asteroid");
                 return "";
             }
 
-            Log.Info("ControllingMod, vessel: " + v.name);
+            Log.info("ControllingMod, vessel: {0}", v.name);
             if (!v.loaded)
             {
-                Log.Info("Vessel is unloaded");
+                Log.info("Vessel is unloaded");
                 foreach (ProtoPartSnapshot p in v.protoVessel.protoPartSnapshots)
                 {
-                    Log.Info("ProtoPartsnapshot, currentStage: " + v.currentStage.ToString() + "  stageIndex: " + p.stageIndex.ToString() + "  inverseStageIndex: " + p.inverseStageIndex.ToString());
+                    Log.info("ProtoPartsnapshot, currentStage: {0}  stageIndex: {1}  inverseStageIndex: {2}", v.currentStage, p.stageIndex, p.inverseStageIndex);
                     if (p.inverseStageIndex >= v.currentStage - 1)
                     {
                         if (idUtil.IsDecoupler(p))
@@ -356,7 +356,7 @@ namespace RecoveryController
                             // FindModuleImplementing<RecoveryIDModule>();
                             if (m != null /*&& m.moduleRef != null */)
                             {
-                                Log.Info("Part: " + p.partInfo.name + ", decoupler, Returning: " + m.moduleValues.GetValue("recoveryOwner"));
+                                Log.info("Part: {0}, decoupler, Returning: {1}", p.partInfo.name, m.moduleValues.GetValue("recoveryOwner"));
                                 return m.moduleValues.GetValue("recoveryOwner");
                                 //return ((RecoveryIDModule)m.moduleRef).RecoveryOwner;
                             }
@@ -369,7 +369,7 @@ namespace RecoveryController
                                     ProtoPartModuleSnapshot m = p.modules.FirstOrDefault(mod => mod.moduleName == "ControllingRecoveryModule");
                                     if (m != null /* && m.moduleRef != null */ )
                                     {
-                                        Log.Info("Part: " + p.partInfo.name + ", part,  Returning: " + m.moduleValues.GetValue("recoveryOwner"));
+                                        Log.info("Part: {0} part,  Returning: {1}", p.partInfo.name, m.moduleValues.GetValue("recoveryOwner"));
                                         return m.moduleValues.GetValue("recoveryOwner");
                                         //return ((RecoveryIDModule)m.moduleRef).RecoveryOwner;
                                     }
@@ -377,7 +377,7 @@ namespace RecoveryController
                             }
                             else
                             {
-                                Log.Info("ControllingRecoveryModule not found");
+                                Log.info("ControllingRecoveryModule not found");
                                 return "ControllingRecoveryModule not found";
                             }
                         }
@@ -397,7 +397,7 @@ namespace RecoveryController
                             RecoveryIDModule m = p.FindModuleImplementing<RecoveryIDModule>();
                             if (m != null)
                             {
-                                Log.Info("Part: " + p.partInfo.name + ", Returning: " + m.RecoveryOwner);
+                                Log.info("Part: {0}, Returning: {1}", p.partInfo.name, m.RecoveryOwner);
                                 return m.RecoveryOwner;
                             }
                         }
@@ -406,7 +406,7 @@ namespace RecoveryController
                             ControllingRecoveryModule m = p.FindModuleImplementing<ControllingRecoveryModule>();
                             if (m != null)
                             {
-                                Log.Info("Part: " + p.partInfo.name + ", Returning: " + m.RecoveryOwner);
+                                Log.info("Part: {0}, Returning: {1}", p.partInfo.name, m.RecoveryOwner);
                                 return m.RecoveryOwner;
                             }
                         }
@@ -414,13 +414,13 @@ namespace RecoveryController
                     }
                 }
             }
-            Log.Info("returning null");
+            Log.info("returning null");
             return null;
         }
 
         private void OnDestroy()
         {
-            Log.Info("RecoveryController.OnDestroy");
+            Log.dbg("RecoveryController.OnDestroy");
             GameEvents.onEditorPartPlaced.Remove(onEditorPartPlaced);
             GameEvents.onEditorLoad.Remove(onEditorLoad);
             GameEvents.onVesselLoaded.Remove(onVesselLoaded);
@@ -430,24 +430,24 @@ namespace RecoveryController
         
         void onEditorLoad(ShipConstruct ct, CraftBrowserDialog.LoadType loadType)
         {
-            Log.Info("onEditorLoad 1");
+            Log.dbg("onEditorLoad 1");
             if (!registeredMods.Contains("StageRecovery"))                
                 return;
             // if (loadType == CraftBrowserDialog.LoadType.Normal)
             if (ct != null && ct.Parts.Count() > 0)
             {
-                Log.Info("onEditorLoad 2");
+                Log.dbg("onEditorLoad 2");
                 Part root = ct.Parts[0];
-                Log.Info("onEditorLoad 3");
+                Log.info("onEditorLoad 3");
 
                 if (!idUtil.IsDecoupler(root))
                 {
-                    Log.Info("onEditorLoad 4");
+                    Log.dbg("onEditorLoad 4");
                     idUtil.UpdateChildren(root, root.FindModuleImplementing<ControllingRecoveryModule>().RecoveryOwner, true);
                 }
                 else
                 {
-                    Log.Info("onEditorLoad 5");
+                    Log.dbg("onEditorLoad 5");
                     idUtil.UpdateChildren(root, root.FindModuleImplementing<RecoveryIDModule>().RecoveryOwner, true);
                 }
             }
@@ -455,7 +455,7 @@ namespace RecoveryController
 
         void onVesselLoaded(Vessel v)
         {
-            Log.Info("onVesselLoaded");
+            Log.dbg("onVesselLoaded");
             if (v == null || v.rootPart == null)
                 return;
             if (!registeredMods.Contains("StageRecovery"))                
@@ -478,7 +478,7 @@ namespace RecoveryController
 
         void onVesselCreate(Vessel v)
         {
-            Log.Info("onVesselCreate");
+            Log.dbg("onVesselCreate");
             if (v.rootPart != null)
                 if (!idUtil.IsDecoupler(v.rootPart))
                     idUtil.UpdateChildren(v.rootPart, v.rootPart.FindModuleImplementing<ControllingRecoveryModule>().RecoveryOwner, true);
@@ -488,7 +488,7 @@ namespace RecoveryController
 
         void onVesselWasModified(Vessel v)
         {
-            Log.Info("onVesselWasModified");
+            Log.dbg("onVesselWasModified");
             if (!idUtil.IsDecoupler(v.rootPart))
             {
 
@@ -507,14 +507,14 @@ namespace RecoveryController
         {
             if (p == null)
             {
-                Log.Info("RecoveryController.onEditorPartPlaced, part is null");
+                Log.dbg("RecoveryController.onEditorPartPlaced, part is null");
                 return;
             }
-            Log.Info("RecoveryController.onEditorPartPlaced, part: " + p.partInfo.name);
+            Log.dbg("RecoveryController.onEditorPartPlaced, part: {0}", p.partInfo.name);
             if (p.parent == null)
             {
                 // First part placed, set to auto
-                Log.Info("Initial part placement");
+                Log.dbg("Initial part placement");
                 if (!idUtil.IsDecoupler(p))
                     p.FindModuleImplementing<ControllingRecoveryModule>().RecoveryOwner = AUTO;
                 else
@@ -536,7 +536,7 @@ namespace RecoveryController
             }
             else
             {
-                Log.Info("Decoupler placed");
+                Log.dbg("Decoupler placed");
                 // Always set decoupler to auto when placed
                 p.FindModuleImplementing<RecoveryIDModule>().RecoveryOwner = AUTO;
             }

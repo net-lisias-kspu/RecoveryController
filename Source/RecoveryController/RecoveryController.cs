@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+
 using UnityEngine;
+
 using KSP.UI.Screens;
 
 
@@ -81,7 +81,7 @@ namespace RecoveryController
                 {
                     if (this.part.symmetryCounterparts.Count > 0)
                     {
-                        foreach (var p in this.part.symmetryCounterparts)
+                        foreach (Part p in this.part.symmetryCounterparts)
                         {
                             RecoveryIDModule ridm = p.FindModuleImplementing<RecoveryIDModule>();
                             ridm.updateRecoveryOwner(RecoveryOwner);
@@ -306,7 +306,7 @@ namespace RecoveryController
                 if (!registeredMods.Contains("none"))
                     registeredMods.Add("none");
             }
-            foreach (var r in registeredMods)
+            foreach (string r in registeredMods)
             {
                 Log.Info("Registered mod: " + r);
             }
@@ -462,7 +462,7 @@ namespace RecoveryController
                 return;
             if (!idUtil.IsDecoupler(v.rootPart))
             {
-                var m = v.rootPart.FindModuleImplementing<ControllingRecoveryModule>();
+				ControllingRecoveryModule m = v.rootPart.FindModuleImplementing<ControllingRecoveryModule>();
                 if (m != null)
                 {
                     idUtil.UpdateChildren(v.rootPart, m.RecoveryOwner, true);
@@ -470,7 +470,7 @@ namespace RecoveryController
             }
             else
             {
-                var m = v.rootPart.FindModuleImplementing<RecoveryIDModule>();
+				RecoveryIDModule m = v.rootPart.FindModuleImplementing<RecoveryIDModule>();
                 if (m != null)
                     idUtil.UpdateChildren(v.rootPart, m.RecoveryOwner, true);
             }
@@ -492,13 +492,13 @@ namespace RecoveryController
             if (!idUtil.IsDecoupler(v.rootPart))
             {
 
-                var m = v.rootPart.FindModuleImplementing<ControllingRecoveryModule>();
+				ControllingRecoveryModule m = v.rootPart.FindModuleImplementing<ControllingRecoveryModule>();
                 if (m != null)
                     idUtil.UpdateChildren(v.rootPart, m.RecoveryOwner, true);
             }
             else
             {
-                var m = v.rootPart.FindModuleImplementing<RecoveryIDModule>();
+				RecoveryIDModule m = v.rootPart.FindModuleImplementing<RecoveryIDModule>();
                 idUtil.UpdateChildren(v.rootPart, v.rootPart.FindModuleImplementing<RecoveryIDModule>().RecoveryOwner, true);
             }
         }

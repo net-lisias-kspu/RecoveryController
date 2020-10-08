@@ -114,7 +114,7 @@ namespace RecoveryController
             {
                 return false;
             }
-            var s = CallRecoveryController("RegisterMod", modName);
+            object s = CallRecoveryController("RegisterMod", modName);
             if (s == null)
                 return false;
             return (bool)s;
@@ -126,7 +126,7 @@ namespace RecoveryController
             {
                 return false;
             }
-            var s = CallRecoveryController("UnRegisterMod", modName);
+            object s = CallRecoveryController("UnRegisterMod", modName);
             if (s == null)
                 return false;
             return (bool)s;
@@ -140,7 +140,7 @@ namespace RecoveryController
             }
             if (v.name.StartsWith("Ast."))
                 return "";
-            var s = CallRecoveryController("ControllingMod", v);
+            object s = CallRecoveryController("ControllingMod", v);
             if (s != null)
                 return (string)s;
             return null;

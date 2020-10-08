@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RecoveryController")]
+[assembly: AssemblyTitle("Recovery Controller /L Unofficial")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RecoveryController")]
-[assembly: AssemblyCopyright("Copyright ©  2017, LinuxGuruGamer")]
+[assembly: AssemblyProduct("Recovery Controller")]
+[assembly: AssemblyCopyright("© 2020 LisiasT")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

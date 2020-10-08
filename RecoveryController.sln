@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecoveryController", "RecoveryController\RecoveryController.csproj", "{7D230819-06D5-44FD-A528-EAA181EF7D8B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecoveryController", "Source\RecoveryController\RecoveryController.csproj", "{7D230819-06D5-44FD-A528-EAA181EF7D8B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RecoveryControllerSolutionFolder", "RecoveryControllerSolutionFolder", "{9CD2F274-5D4E-462F-8525-B46F71F81C59}"
 	ProjectSection(SolutionItems) = preProject

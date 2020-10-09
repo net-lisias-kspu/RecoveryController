@@ -283,13 +283,13 @@ namespace RecoveryController
         private void Awake()
         {
             registeredMods = new List<string>();
-            Log.info("RecoveryController.Awake");
+            Log.dbg("RecoveryController.Awake");
             DontDestroyOnLoad(this);
         }
 
         public bool RegisterMod(string modName)
         {
-            Log.error("RecoveryController.RegisterMod, modname: {0}", modName);
+            Log.info("RecoveryController.RegisterMod, modname: {0}", modName);
             if (!registeredMods.Contains(modName))
             {
                 registeredMods.Add(modName);

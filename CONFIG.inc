@@ -1,8 +1,8 @@
 source ../CONFIG.inc
 
 PACKAGE="RecoveryController"
-TARGETDIR="$PACKAGE/"
-TARGETBINDIR="net.lisias.ksp/$TARGETDIR"
+TARGETDIR="net.lisias.ksp/$PACKAGE/"
+TARGETBINDIR="$TARGETDIR"
 PROJECTSDIR="$PACKAGE/"
 
 DLLS="RecoveryController"

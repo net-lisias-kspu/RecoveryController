@@ -1,5 +1,10 @@
 # Recovery Controller :: Change Log
 
+* 2019-0730: 0.0.3.8 (linuxgurugamer) for KSP 0.7.3
+	+ Added InstallChecker
+	+ Updated AssemblyVersion.tt
+	+ Thanks to github user @Maartenvm:
+		- Added support for Universal Storage Decouplers
 * 2019-0124: 0.0.3.7 (linuxgurugamer) for KSP 0.7.3
 	+ Changed startup option to instantly
 * 2019-0122: 0.0.3.5 (linuxgurugamer) for KSP 0.7.3

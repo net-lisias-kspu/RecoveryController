@@ -1,5 +1,7 @@
 # Recovery Controller :: Change Log
 
+* 2019-1027: 0.0.4 (linuxgurugamer) for KSP 1.8
+	+ Updated for KSP 1.8
 * 2019-0730: 0.0.3.8 (linuxgurugamer) for KSP 0.7.3
 	+ Added InstallChecker
 	+ Updated AssemblyVersion.tt

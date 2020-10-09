@@ -1,5 +1,7 @@
 # Recovery Controller :: Change Log
 
+* 2019-0124: 0.0.3.7 (linuxgurugamer) for KSP 0.7.3
+	+ Changed startup option to instantly
 * 2019-0122: 0.0.3.5 (linuxgurugamer) for KSP 0.7.3
 	+ Fixed startup sequence for 1.5 and later
 * 2019-0109: 0.0.3.4 (linuxgurugamer) for KSP 0.7.3
